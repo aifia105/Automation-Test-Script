@@ -1,8 +1,14 @@
-const { Browser, By, Builder } = require('selenium-webdriver');
-const assert = require('assert');
+import { Builder, By, Browser } from 'selenium-webdriver';
+import * as chai from 'chai';
+import  assert  from 'assert';
+
+
+
 
 async function example() {
     let driver = await new Builder().forBrowser(Browser.EDGE).build();
+    chai.should(); // Initialize should
+   
 
     try {
         // Navigate to the URL
@@ -56,11 +62,28 @@ async function example() {
 
         // Check if order is complete
         let complete = await driver.findElement(By.css('.complete-header')).getText();
-        assert.equal(complete.toLowerCase(), 'THANK YOU FOR YOUR ORDER!'.toLowerCase());
+
+        // Check if order is complete using assert
+        assert.strictEqual(complete.toLowerCase(), 'THANK YOU FOR YOUR ORDER!'.toLowerCase());
+
+        // Check if order is complete using chai
+
+        // expect
+        chai.expect(complete.toLowerCase()).equal('THANK YOU FOR YOUR ORDER!'.toLowerCase());
+
+        // should
+        complete.toLowerCase().should.equal('THANK YOU FOR YOUR ORDER!'.toLowerCase());
+
+
+
+        
+
 
     } catch(e) {
         console.error(e);
-    } 
+    } finally {
+        await driver.quit();
+    }
 }
 
 example();
