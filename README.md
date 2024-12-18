@@ -28,7 +28,7 @@ Ensure the following tools and libraries are installed:
 2. Navigate to the project directory:
 
    ```bash
-   cd Automation-Test-Scripts
+   cd Automation-Test-Scripts/test
    ```
 
 3. Install the required dependencies:
